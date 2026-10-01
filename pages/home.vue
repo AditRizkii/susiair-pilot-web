@@ -76,8 +76,8 @@ function signOut() {
 <template>
   <main class="mobile-page">
     <div class="app-shell">
-      <header class="home-header"><div><p class="eyebrow">SUSI AIR · PILOT APP</p><h1 class="page-title">Good morning, {{ profile?.name?.split(' ')[0] ?? 'Pilot' }}.</h1></div><button class="avatar" aria-label="Sign out" @click="signOut"><img v-if="profile" :src="profile.avatarUrl" :alt="profile.name" /></button></header>
-      <p v-if="isLoading" class="status">Loading your operations data…</p>
+      <header class="home-header"><div><img src="/images/susiair-logo.png" width="116" height="30" alt="Susi Air" class="header-logo" /><p class="eyebrow">PILOT APP</p><h1 class="page-title">Good morning, {{ profile?.name?.split(' ')[0] ?? 'Pilot' }}.</h1></div><button class="avatar" aria-label="Sign out" @click="signOut"><img v-if="profile" :src="profile.avatarUrl" :alt="profile.name" /></button></header>
+      <AppLoader v-if="isLoading" />
       <p v-else-if="errorMessage" class="status error">{{ errorMessage }} <button @click="loadHome">Try again</button></p>
       <template v-else-if="profile && chart">
         <section class="total-hours"><span>TOTAL FLIGHT HOURS</span><strong>{{ profile.totalFlightHours.toLocaleString('en-US', { minimumFractionDigits: 1 }) }} <small>hrs</small></strong><small>ALL TIME</small></section>
@@ -92,6 +92,7 @@ function signOut() {
 
 <style scoped lang="scss">
 .home-header { display: flex; align-items: start; justify-content: space-between; margin-bottom: 24px; }
+.header-logo { display: block; width: auto; height: 30px; margin-bottom: 10px; object-fit: contain; object-position: left; }
 .avatar { display: grid; width: 44px; height: 44px; place-items: center; overflow: hidden; border: 0; border-radius: 50%; background: #dce4ec; img { width: 100%; height: 100%; } }
 .status { padding: 18px; border-radius: 12px; background: #fff; color: #6b7280; font-size: 14px; &.error { color: #e63758; button { margin-left: 5px; border: 0; background: transparent; color: inherit; font-weight: 800; text-decoration: underline; } } }
 .total-hours { display: grid; gap: 4px; margin-bottom: 28px; padding: 20px; border-radius: 14px; background: #0e2138; color: #fff; > span, > small { color: #b6c0cd; font-size: 10px; font-weight: 800; letter-spacing: .07em; } strong { font-size: 30px; letter-spacing: -.05em; small { font-size: 13px; } } }

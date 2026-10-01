@@ -73,7 +73,7 @@ onMounted(async () => {
         <div><p class="eyebrow">MONTHLY VIEW</p><h2>{{ title }}</h2></div>
         <div class="month-actions"><button aria-label="Previous month" @click="changeMonth(-1)"><ChevronLeft :size="19" /></button><button aria-label="Next month" @click="changeMonth(1)"><ChevronRight :size="19" /></button></div>
       </section>
-      <p v-if="isLoading" class="status">Loading schedule…</p>
+      <AppLoader v-if="isLoading" />
       <p v-else-if="errorMessage" class="status error">{{ errorMessage }} <button @click="loadSchedule">Try again</button></p>
       <template v-else-if="schedule">
         <section class="calendar" aria-label="Monthly schedule">
