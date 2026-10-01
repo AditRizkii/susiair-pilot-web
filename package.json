@@ -1,0 +1,18 @@
+{
+  "name": "susiair-pilot-web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt build",
+    "start": "node .output/server/index.mjs"
+  },
+  "dependencies": {
+    "@pinia/nuxt": "^0.11.1",
+    "chart.js": "^4.5.1",
+    "lucide-vue-next": "^0.468.0",
+    "nuxt": "^3.17.0",
+    "pinia": "^3.0.1",
+    "sass": "^1.86.0"
+  }
+}
