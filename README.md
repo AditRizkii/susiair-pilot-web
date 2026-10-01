@@ -31,6 +31,21 @@ npm run start
 - SCSS implements the Susi Air visual system.
 - Chart.js renders only API-provided rolling summaries and regulatory limits.
 
+## Main technical choices
+
+- **Nuxt 3 with Composition API and `<script setup>`:** keeps each screen's state, API requests, and interaction logic close together while remaining type-safe.
+- **Pinia plus a cookie-backed session value:** Pinia owns login/logout state and the shared API composable consistently attaches the JWT to protected requests.
+- **SCSS and official Susi Air logo asset:** preserves the supplied mobile design direction without introducing a utility-CSS dependency.
+- **Chart.js loaded client-side only:** Canvas rendering stays out of SSR while data, chart limits, and rolling-window values remain supplied by the API.
+- **One reusable branded loader:** Home and Schedule use the same reduced-motion-aware loading treatment rather than duplicating loading UI.
+
+## With more time
+
+- Add end-to-end browser tests for login, range switching, and month navigation.
+- Add skeleton states and finer-grained loading for independent Home sections.
+- Move the JWT to an HttpOnly cookie managed by the API and add refresh-token handling.
+- Add a visual regression check against the final Figma design at common mobile widths.
+
 ## Deploy with Dokploy
 
 1. Create an Application service from this repository.
